@@ -2596,6 +2596,9 @@ _.extend(sharedStrings.prototype, {
 
         while (l--) {
             var clone = template.cloneNode(true);
+            if (strings[l] && strings[l].match(/\s+/)) {
+                clone.firstChild.setAttribute('xml:space', 'preserve');
+            }
             clone.firstChild.firstChild.nodeValue = strings[l];
             sharedStringTable.appendChild(clone);
         }
@@ -2604,6 +2607,7 @@ _.extend(sharedStrings.prototype, {
     }
 });
 module.exports = sharedStrings;
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./util":28}],19:[function(require,module,exports){
 (function (global,Buffer){

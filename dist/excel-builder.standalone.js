@@ -11985,6 +11985,9 @@ _.extend(sharedStrings.prototype, {
 
         while (l--) {
             var clone = template.cloneNode(true);
+            if (strings[l] && strings[l].match(/\s+/)) {
+                clone.firstChild.setAttribute('xml:space', 'preserve');
+            }
             clone.firstChild.firstChild.nodeValue = strings[l];
             sharedStringTable.appendChild(clone);
         }
@@ -11993,6 +11996,7 @@ _.extend(sharedStrings.prototype, {
     }
 });
 module.exports = sharedStrings;
+
 },{"./util":67,"lodash":"lodash"}],58:[function(require,module,exports){
 (function (Buffer){
 "use strict";
